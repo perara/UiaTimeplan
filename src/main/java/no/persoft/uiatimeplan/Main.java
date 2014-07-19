@@ -14,7 +14,7 @@ import java.util.LinkedHashSet;
 public class Main {
 
     public static void main(String[] args){
-    /*
+
         Session session = HibernateUtil.createFactory().openSession();
         LinkedHashSet<Course> result = new LinkedHashSet(session.createCriteria(Course.class).setFetchMode("courseItems", FetchMode.JOIN).list());
         session.close();
@@ -32,7 +32,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        */
+
         WebServer webServer = new WebServer();
 
 
