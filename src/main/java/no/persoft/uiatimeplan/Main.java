@@ -3,7 +3,6 @@ package no.persoft.uiatimeplan;
 import no.persoft.uiatimeplan.Fetcher.Fetcher;
 import no.persoft.uiatimeplan.Fetcher.HibernateUtil;
 import no.persoft.uiatimeplan.Fetcher.Models.Course;
-import no.persoft.uiatimeplan.Server.WebServer;
 import org.hibernate.*;
 
 import java.io.IOException;
@@ -15,9 +14,8 @@ public class Main {
 
     public static void main(String[] args){
 
-        Session session = HibernateUtil.createFactory().openSession();
+        Session session = HibernateUtil.getInstance().openSession();
         LinkedHashSet<Course> result = new LinkedHashSet(session.createCriteria(Course.class).setFetchMode("courseItems", FetchMode.JOIN).list());
-        session.close();
 
         for(Course i : result)
         {
@@ -33,11 +31,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        WebServer webServer = new WebServer();
-
-
-
-
+        session.close();
 
     }
 }

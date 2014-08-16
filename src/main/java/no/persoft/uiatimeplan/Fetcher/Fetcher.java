@@ -75,7 +75,7 @@ public class Fetcher {
     {
         Document doc = Jsoup.parse(courseHtml);
 
-        Session session = HibernateUtil.createFactory().openSession();
+        Session session = HibernateUtil.getInstance().openSession();
         Transaction tx = session.beginTransaction();
 
         System.out.println(courseName);
@@ -117,7 +117,6 @@ public class Fetcher {
         }
 
         tx.commit();
-        session.close();
 
 
         return true;

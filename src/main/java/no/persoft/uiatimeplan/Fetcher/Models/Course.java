@@ -17,7 +17,7 @@ import java.util.Set;
 })
 @XmlRootElement
 public class Course implements Serializable {
-
+    @Expose private int id;
     @Expose private String name;
     @Expose private Set<CourseItem> courseItems = new HashSet<CourseItem>(0);
 
@@ -44,12 +44,20 @@ public class Course implements Serializable {
      * Name Field
      *
      ************************************************************/
+
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Column(name = "COURSE_NAME", unique = true, nullable = false, length = 255)
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }

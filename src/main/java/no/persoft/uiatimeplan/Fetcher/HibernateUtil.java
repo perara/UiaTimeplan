@@ -8,8 +8,10 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
+    private static SessionFactory instance;
 
-    public static SessionFactory createFactory()
+
+    private static SessionFactory createFactory()
     {
         Configuration configuration = new Configuration();
         configuration.configure();
@@ -22,7 +24,15 @@ public class HibernateUtil {
                 .addAnnotatedClass(CourseItem.class)
                 .buildSessionFactory(serviceRegistry);
 
+
         return sessionFactory;
+    }
+
+    public static SessionFactory getInstance(){
+        if(HibernateUtil.instance == null){
+            HibernateUtil.instance = HibernateUtil.createFactory();
+        }
+        return HibernateUtil.instance;
     }
 
 }
