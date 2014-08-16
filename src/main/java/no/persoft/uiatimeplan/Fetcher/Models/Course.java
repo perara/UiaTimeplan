@@ -12,7 +12,7 @@ import java.util.Set;
  * Created by PerArne on 07.07.2014.
  */
 @Entity
-@Table(name = "Course", uniqueConstraints = {
+@Table(name = "course", uniqueConstraints = {
         @UniqueConstraint(columnNames = "COURSE_NAME")
 })
 @XmlRootElement

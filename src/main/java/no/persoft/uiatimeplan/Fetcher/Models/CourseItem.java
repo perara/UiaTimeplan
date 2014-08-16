@@ -29,7 +29,7 @@ public class CourseItem implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Course [id=" + itemId + ", from_date=" + fromDate + ", to_date=" + toDate + ", activity=" + activity + ", room=" + room + ", educator=" + educator + "]";
+        return "course [id=" + itemId + ", from_date=" + fromDate + ", to_date=" + toDate + ", activity=" + activity + ", room=" + room + ", educator=" + educator + "]";
     }
 
     @ManyToOne
