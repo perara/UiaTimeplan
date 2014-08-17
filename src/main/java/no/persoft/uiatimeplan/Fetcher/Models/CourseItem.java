@@ -1,7 +1,6 @@
 package no.persoft.uiatimeplan.Fetcher.Models;
 
 import com.google.gson.annotations.Expose;
-import com.sun.istack.internal.NotNull;
 
 import java.util.Date;
 import javax.persistence.Column;
