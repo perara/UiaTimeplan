@@ -23,9 +23,11 @@ import java.util.regex.Pattern;
  * Created by PerArne on 08.07.2014.
  */
 public class Fetcher {
+    private boolean isSubject;
 
-
-    public Fetcher(){}
+    public Fetcher(boolean isSubject){
+        this.isSubject = isSubject;
+    }
 
     public boolean run() throws IOException {
         System.out.println("Starting...");
@@ -33,6 +35,11 @@ public class Fetcher {
         WebClient webClient = new WebClient(BrowserVersion.CHROME);
         webClient.getOptions().setCssEnabled(false);
         HtmlPage page = (HtmlPage)webClient.getPage("http://timeplan.uia.no/swsuiah/public/no/default.aspx");
+
+        if(this.isSubject) {
+            HtmlAnchor anch = (HtmlAnchor) page.getElementById("LinkBtn_modules");
+            page = anch.click();
+        }
 
         //page = (HtmlPage)page.getAnchorByHref("javascript:__doPostBack('LinkBtn_modules','')").click();
         //page = (HtmlPage)page.getAnchorByHref("javascript:__doPostBack('LinkBtn_studentsets','')").click();
@@ -82,6 +89,7 @@ public class Fetcher {
         Course course = new Course();
         course.setName(courseName);
         course.setCourseItems(new HashSet<CourseItem>());
+        course.setIsSubject(this.isSubject ? 1 : 0);
         session.saveOrUpdate(course);
 
 

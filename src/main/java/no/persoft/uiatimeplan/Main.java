@@ -24,9 +24,11 @@ public class Main {
         System.out.println("......");
 
 
-        Fetcher fetch = new Fetcher();
+        Fetcher fetchCourse = new Fetcher(false);
+        Fetcher fetchSingle = new Fetcher(true);
         try {
-            fetch.run();
+            fetchCourse.run();
+            fetchSingle.run();
         } catch (IOException e) {
             e.printStackTrace();
         }

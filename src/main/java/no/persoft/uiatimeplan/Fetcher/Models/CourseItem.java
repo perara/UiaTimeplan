@@ -1,6 +1,7 @@
 package no.persoft.uiatimeplan.Fetcher.Models;
 
 import com.google.gson.annotations.Expose;
+import com.sun.istack.internal.NotNull;
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -26,7 +27,6 @@ public class CourseItem implements java.io.Serializable {
     @Expose private String activity;
     @Expose private String room;
     @Expose private String educator;
-
     @Override
     public String toString() {
         return "course [id=" + itemId + ", from_date=" + fromDate + ", to_date=" + toDate + ", activity=" + activity + ", room=" + room + ", educator=" + educator + "]";
@@ -46,6 +46,7 @@ public class CourseItem implements java.io.Serializable {
         this.activity = activity;
         this.room = room;
         this.educator = educator;
+
     }
 
     /***********************************************************
@@ -105,6 +106,7 @@ public class CourseItem implements java.io.Serializable {
     public void setToDate(Date toDate) {
         this.toDate = toDate;
     }
+
     /***********************************************************
      *
      * Activity Field
@@ -114,10 +116,10 @@ public class CourseItem implements java.io.Serializable {
     public String getActivity() {
         return activity;
     }
-
     public void setActivity(String activity) {
         this.activity = activity;
     }
+
 
     /***********************************************************
      *
@@ -128,7 +130,6 @@ public class CourseItem implements java.io.Serializable {
     public String getRoom() {
         return room;
     }
-
     public void setRoom(String room) {
         this.room = room;
     }

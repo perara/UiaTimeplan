@@ -1,6 +1,7 @@
 package no.persoft.uiatimeplan.Fetcher.Models;
 
 import com.google.gson.annotations.Expose;
+import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -20,7 +21,7 @@ public class Course implements Serializable {
     @Expose private int id;
     @Expose private String name;
     @Expose private Set<CourseItem> courseItems = new HashSet<CourseItem>(0);
-
+    @Expose private int isSubject;
 
     @Override
     public String toString() {
@@ -33,10 +34,11 @@ public class Course implements Serializable {
     {
         this.name = name;
     }
-    public Course(String name, Set<CourseItem> courseItems)
+    public Course(String name, Set<CourseItem> courseItems , int isSubject)
     {
         this.name = name;
         this.courseItems = courseItems;
+        this.isSubject = isSubject;
     }
 
     /***********************************************************
@@ -77,6 +79,17 @@ public class Course implements Serializable {
     }
 
 
+    /***********************************************************
+     *
+     * Bool if its subject or course
+     *
+     ************************************************************/
+    @Column(name = "COURSE_ISSUBJECT", nullable = false)
+    @NotNull
+    public int getIsSubject() {
+        return this.isSubject;
+    }
+    public void setIsSubject(int isSubject){this.isSubject = isSubject;}
 
 
 }
