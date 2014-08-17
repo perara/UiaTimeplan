@@ -85,7 +85,6 @@ public class Course implements Serializable {
      *
      ************************************************************/
     @Column(name = "COURSE_ISSUBJECT", nullable = false)
-    @NotNull
     public int getIsSubject() {
         return this.isSubject;
     }
