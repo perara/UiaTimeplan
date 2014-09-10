@@ -21,7 +21,7 @@
 
 
         <property name="show_sql">false</property>
-        <property name="hibernate.hbm2ddl.auto">create-drop</property> <!--create-drop--> <!--update-->
+        <property name="hibernate.hbm2ddl.auto">validate</property> <!--create-drop--> <!--update--><!-- http://stackoverflow.com/questions/438146/hibernate-hbm2ddl-auto-possible-values-and-what-they-do-->
         <mapping class="no.persoft.uiatimeplan.Fetcher.Models.Course" />
         <mapping class="no.persoft.uiatimeplan.Fetcher.Models.CourseItem" />
     </session-factory>

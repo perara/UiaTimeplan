@@ -3,6 +3,7 @@ package no.persoft.uiatimeplan.Fetcher;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import no.persoft.uiatimeplan.Fetcher.Models.Course;
 import no.persoft.uiatimeplan.Fetcher.Models.CourseItem;
 import org.hibernate.Session;
@@ -12,6 +13,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,7 +92,21 @@ public class Fetcher {
         course.setName(courseName);
         course.setCourseItems(new HashSet<CourseItem>());
         course.setIsSubject(this.isSubject ? 1 : 0);
-        session.saveOrUpdate(course);
+
+        // Check if already exists
+        Course real = (Course)session.createQuery("from Course as c where c.name = ?").setString(0, course.getName()).uniqueResult();
+
+        if(real == null) {
+            course.setLastUpdate(new Timestamp(new Date().getTime()));
+            session.saveOrUpdate(course);
+        }
+        else {
+            System.out.println(course.getName() + " already exists... Dump DB and continue");
+            course = real;
+            course.setLastUpdate(new Timestamp(new Date().getTime()));
+            session.update(course);
+            session.createQuery("delete from CourseItem  as ci where ci.course = " + course.getId()).executeUpdate();
+        }
 
 
         for (Element tr : doc.getElementsByClass("tr2"))
