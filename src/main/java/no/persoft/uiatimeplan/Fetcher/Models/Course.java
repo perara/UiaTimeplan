@@ -22,7 +22,7 @@ public class Course implements Serializable {
     @Expose private String name;
     @Expose private Set<CourseItem> courseItems = new HashSet<CourseItem>(0);
     @Expose private int isSubject;
-    private Date lastUpdate;
+    private String lastUpdate;
 
     @Override
     public String toString() {
@@ -35,7 +35,7 @@ public class Course implements Serializable {
     {
         this.name = name;
     }
-    public Course(String name, Set<CourseItem> courseItems , int isSubject, Timestamp lastUpdate)
+    public Course(String name, Set<CourseItem> courseItems , int isSubject, String lastUpdate)
     {
         this.name = name;
         this.courseItems = courseItems;
@@ -72,10 +72,10 @@ public class Course implements Serializable {
      *
      ************************************************************/
     @Column(name = "COURSE_LAST_UPDATED", unique = true, nullable = true, length = 255)
-    public Date getLastUpdate() {
+    public String getLastUpdate() {
         return lastUpdate;
     }
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(String lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
