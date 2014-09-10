@@ -97,13 +97,13 @@ public class Fetcher {
         Course real = (Course)session.createQuery("from Course as c where c.name = ?").setString(0, course.getName()).uniqueResult();
 
         if(real == null) {
-            course.setLastUpdate(new Timestamp(new Date().getTime()));
+            course.setLastUpdate(new Date());
             session.saveOrUpdate(course);
         }
         else {
             System.out.println(course.getName() + " already exists... Dump DB and continue");
             course = real;
-            course.setLastUpdate(new Timestamp(new Date().getTime()));
+            course.setLastUpdate(new Date());
             session.update(course);
             session.createQuery("delete from CourseItem  as ci where ci.course = " + course.getId()).executeUpdate();
         }
