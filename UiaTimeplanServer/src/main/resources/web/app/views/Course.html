@@ -1,0 +1,56 @@
+<div class="btn-group">
+
+    <li class="btn btn-navbar"><b>{{courseName}}</b></li>
+
+    <li class="btn btn-navbar" ng-click="addFavourite()" ng-show="!isFavourite"><i class="fa fa-plus fa-navbar"></i> Add to favourites </li>
+    <li class="btn btn-navbar" ng-click="removeFavourite()" ng-show="isFavourite"><i class="fa fa-minus fa-navbar"></i> Remove favourite </li>
+</div>
+
+
+<div class="panel-group scrollable-content" id="accordion">
+
+    <div ng-repeat="(date, items) in courseItems">
+        <div id="{{date}}" class="panel panel-default course-item">
+            <div class="panel-heading flat" toggle target="{{$index}}">
+                <h4 class="panel-title">
+                    {{date | date:'EEEE dd. MMMM' }}
+                </h4>
+            </div>
+        </div>
+
+
+
+        <div id="{{$index}}" ng-class="(date - now < 0) ? 'past-course collapse' : 'current-course'">
+            <div class="panel-body">
+                <!-- Content -->
+                <div class=" course-item-data white"  ng-repeat="item in items" >
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <span class="glyphicon glyphicon-dashboard white"></span>
+                            {{item.fromDate | date:'medium'}} - {{item.toDate | date:'medium'}}
+
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="glyphicon glyphicon-home"></span>
+                            {{item.room}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <span class="glyphicon glyphicon-book"></span>
+                            {{item.activity}}
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="glyphicon glyphicon-user"></span>
+                            {{item.educator}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,39 @@
+<div ui-content-for="title">
+    <span>UIA Timeplan</span>
+</div>
+
+<div class="scrollable" ui-state="searchBar">
+
+    <!--<div ng-if="Ui.active('searchBar')">-->
+        <div class="col-lg-2 no-padding" >
+            <button ng-click="showSubjects = !showSubjects" class="btn btn-lg form-control flat" style="height: 46px;" ng-show="showSubjects"><p> Show Courses</p></button>
+            <button ng-click="showSubjects = !showSubjects" class="btn btn-lg form-control flat" style="height: 46px;" ng-show="!showSubjects"><p> Show Subjects</p></button>
+        </div>
+
+        <div class="col-lg-10 no-padding">
+            <input type="text" ng-model="search" placeholder="Search..." class="form-control input-lg flat">
+        </div>
+    <!-- </div> -->
+
+     <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
+         <div class="list-group">
+             <a ng-repeat="course in courses | filter:search | filter:{ isSubject: showSubjects }"
+                href="#/course/{{course.id}}"
+                class="list-group-item">
+                 {{course.name}} <i class="fa fa-chevron-right pull-right"></i>
+             </a>
+         </div>
+     </div>
+
+    <!-- <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
+         <i class="fa fa-search"></i>
+         <span ui-hide="searchBar">Show</span>
+         <span ui-show="searchBar">Hide</span>
+         Filtering Bar
+     </a> -->
+ </div>
+
+
+
+
+
